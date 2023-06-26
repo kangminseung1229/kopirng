@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>nickname</th>
+    </tr>
+    <tr th:if="${account != null}">
+        <th th:text="${account.id}">id</th>
+        <th th:text="${account.nickname}">nickname</th>
+    </tr>
+</table>
+
+<table>
+
+
+    <tr>
+        <th>
+            role_code
+        </th>
+        <th>
+            role_name
+        </th>
+    </tr>
+
+    <hr/>
+
+    <form th:action="@{/account/account-detail}" method="post" th:object="${account}">
+
+        <input type="hidden" name="" th:field="*{id}">
+        <input type="hidden" name="" th:field="*{nickname}">
+        <input type="hidden" name="" th:field="*{password}">
+
+        <tr th:each=" role : ${accountRoles}">
+
+            <label>
+                <th><input type="checkbox" name="" id="" th:field="*{accountRole}" th:value="${role.id}"></th>
+                <th th:text="${role.role}"></th>
+                <th th:text="${role.roleName}"></th>
+            </label>
+
+        </tr>
+
+
+        <input type="submit" value="저장">
+        
+
+    </form>
+
+
+</table>
+
+
+</body>
+</html>
